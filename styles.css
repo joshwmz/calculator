@@ -1,0 +1,98 @@
+body {
+    align-items: center;
+    display: flex;
+    font-family: "Gill Sans", sans-serif;
+    height: 100vh;
+    justify-content: center;
+}
+
+#frame {
+    border: 10px solid;
+    border-radius: 40px;
+    box-sizing: border-box;
+    height: 720px;
+    width: 500px;
+}
+
+#container-top {
+    align-items: center;
+    background-color: rgb(94, 107, 121);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-sizing: border-box;
+    display: flex;
+    height: 25%;
+    justify-content: center;
+    width: 100%;
+}
+
+#display {
+    align-items: end;
+    background: rgb(40, 208, 91);
+    border: 10px solid;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    height: 55%;
+    justify-content: end;
+    width: 85%;
+}
+
+#calc {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 20px;
+}
+
+#keypad {
+    align-items: center;
+    background-color: rgb(211, 205, 191);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top: 10px solid;
+    box-sizing: border-box;
+    display: flex;
+    height: 75%;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+button {
+    border: 10px solid black;
+    border-radius: 25px;
+    box-sizing: border-box;
+    font-size: 1.8em;
+    font-weight: bold;
+    height: 90px;
+    margin: 5px;
+    width: 90px;
+}
+
+#numbers {
+    display: flex;
+    flex-wrap: wrap;
+    height: 90%;
+    width: 300px;
+}
+
+#operators {
+    display: flex;
+    flex-wrap: wrap;
+    height: 90%;
+    width: 100px;
+}
+
+#operators button {
+    background-color: rgb(53, 64, 74);
+    color: white;
+}
+
+#zero {
+    height: 90px;
+    width: 190px;
+}
+
+#clear {
+    background-color: rgb(255, 83, 104);
+    font-size: 1.2em;
+}
