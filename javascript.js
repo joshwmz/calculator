@@ -1,7 +1,9 @@
 // PROJECT: CALCULATOR
-let a = null;
-let b = null;
+let a = 0;
+let b = 0;
 let operation = null;
+let operationTrigger = false; // update to true when operator clicked on to reset display
+let operatorTag = null; // update operator style when clicked on
 
 const display = document.querySelector('#calc');
 const numbers = document.querySelectorAll('.number');
@@ -9,18 +11,16 @@ const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equal');
 const clear = document.querySelector('#clear');
 
-let transition = null;
-
 // input numbers into display
 numbers.forEach(number => {
     number.addEventListener('click', () => {
 
-        if (operation == "") {
+        if (operationTrigger == false) {
             display.textContent = `${display.textContent}${number.textContent}`;
-        } else { 
-            display.textContent = ""; // reset display for next number
-            display.textContent = `${display.textContent}${number.textContent}`;
-            transition.classList.remove("clicked");
+        } else { // reset display for next number
+            operationTrigger = false;
+            operatorTransitioned();
+            display.textContent = `${number.textContent}`;
         }
 
     });
@@ -29,21 +29,29 @@ numbers.forEach(number => {
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         
-        transition = operator; // store operator outside of function to remove later
-        operator.classList.add("clicked");
-        
-        if (display.textContent == "") { // nothing happens if no content
+        if (display.textContent === "") { // nothing happens if no content
             return;
         }
 
-        if (operation == "") {
+        if (Number(display.textContent) === a) { // trigger if display content same as "a" i.e. user changing operator
+            operation = operator.textContent;
+            operatorTransitioned();
+            operatorTransition(operator);
+            return;
+        }
+
+        operatorTransition(operator);
+
+        if (operation == null) {
             a = Number(display.textContent);
             operation = operator.textContent;
+            operationTrigger = true;
         } else { // update "a" and "b" if its consecutive calculation
             b = Number(display.textContent);
             let output = operate(a, operation, b);
             a = output; // replace "a" with new output
             operation = operator.textContent;
+            operationTrigger = true;
             display.textContent = output;
         }
 
@@ -73,7 +81,7 @@ clear.addEventListener('click', () => {
 
 
 
-
+// functions
 function add(a, b) {
     return a + b;
 }
@@ -102,7 +110,18 @@ function operate(a, operation, b) { // Calls one of function above based on oper
 }
 
 function reset() {
-    a = "";
-    b = "";
-    operation = "";
+    a = 0;
+    b = 0;
+    operation = null;
+    operationTrigger = false;
+    operatorTransitioned();
+}
+
+function operatorTransition(operator) {
+    operatorTag = operator;
+    operatorTag.classList.add("clicked");
+}
+
+function operatorTransitioned() {
+    operatorTag.classList.remove("clicked");
 }
