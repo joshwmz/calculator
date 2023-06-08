@@ -5,11 +5,18 @@ let operation = null;
 let operationTrigger = false; // update to true when operator clicked on to reset display
 let operatorTag = null; // update operator style when clicked on
 
+const buttons = document.querySelectorAll('button');
 const display = document.querySelector('#calc');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equal');
 const clear = document.querySelector('#clear');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () =>{
+        button.classList.add("click");
+    });
+});
 
 // input numbers into display
 numbers.forEach(number => {

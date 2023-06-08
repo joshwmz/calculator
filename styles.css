@@ -82,6 +82,10 @@ button:hover {
 
 }
 
+button:active {
+    -webkit-filter: brightness(60%);
+}
+
 #numbers {
     display: flex;
     flex-wrap: wrap;
