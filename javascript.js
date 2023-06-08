@@ -33,7 +33,7 @@ operators.forEach(operator => {
             return;
         }
 
-        if (Number(display.textContent) === a) { // trigger if display content same as "a" i.e. user changing operator
+        if (operationTrigger == true) { // trigger if user changing operator
             operation = operator.textContent;
             operatorTransitioned();
             operatorTransition(operator);
