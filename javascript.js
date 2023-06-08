@@ -1,13 +1,15 @@
 // PROJECT: CALCULATOR
-let a = "";
-let b = "";
-let operation = "";
+let a = null;
+let b = null;
+let operation = null;
 
 const display = document.querySelector('#calc');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equal');
 const clear = document.querySelector('#clear');
+
+let transition = null;
 
 // input numbers into display
 numbers.forEach(number => {
@@ -18,6 +20,7 @@ numbers.forEach(number => {
         } else { 
             display.textContent = ""; // reset display for next number
             display.textContent = `${display.textContent}${number.textContent}`;
+            transition.classList.remove("clicked");
         }
 
     });
@@ -26,6 +29,8 @@ numbers.forEach(number => {
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         
+        transition = operator; // store operator outside of function to remove later
+        operator.classList.add("clicked");
         
         if (display.textContent == "") { // nothing happens if no content
             return;

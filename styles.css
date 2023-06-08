@@ -77,6 +77,11 @@ button {
     width: 90px;
 }
 
+button:hover {
+    -webkit-filter: brightness(80%);
+
+}
+
 #numbers {
     display: flex;
     flex-wrap: wrap;
@@ -94,6 +99,10 @@ button {
 .operator {
     background-color: rgb(53, 64, 74);
     color: white;
+}
+
+.clicked {
+    border-color: rgb(255, 180, 45);
 }
 
 #clear {
