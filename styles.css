@@ -1,9 +1,18 @@
 body {
-    align-items: center;
+    background-color: cornflowerblue;
+    box-sizing: border-box;
     display: flex;
+    flex-direction: column;
     font-family: "Gill Sans", sans-serif;
     height: 100vh;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0px;
+    padding: 0px;
+}
+
+#container {
+    align-self: center;
+    display: flex;
 }
 
 #frame {
@@ -14,7 +23,7 @@ body {
     width: 500px;
 }
 
-#container-top {
+#frame-top {
     align-items: center;
     background-color: rgb(94, 107, 121);
     border-top-left-radius: 30px;
@@ -95,4 +104,15 @@ button {
 #equal {
     background-color: rgb(53, 64, 74);
     color: white;
+}
+
+footer {
+    align-self: flex-end;
+    color: white;
+    margin-right: 20px;
+}
+
+#github {
+    color:white;
+    font-size: 24px;
 }

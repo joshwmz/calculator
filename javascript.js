@@ -1,36 +1,91 @@
 // PROJECT: CALCULATOR
-
-// 1. Build these functions and test them on console.log
-
-//  - Add
-function add(a, b) {
-    return a + b;
-}
-
-//  - Subtract
-function subtract(a, b) {
-    return a - b;
-}
-
-//  - Multiply
-function multiply(a, b) {
-    return a * b;
-}
-
-//  - Divide
-function divide(a, b) {
-    return a / b;
-}
-
-// 2. Create 3 variables which includes a number, and operator, and another number
-
 let a = "";
 let b = "";
 let operation = "";
 
-// 3. Create function that takes an operator and 2 numbers then calls one of the above functions on the numbers
+const display = document.querySelector('#calc');
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+const equals = document.querySelector('#equal');
+const clear = document.querySelector('#clear');
 
-function operate(a, operation, b) {
+// input numbers into display
+numbers.forEach(number => {
+    number.addEventListener('click', () => {
+
+        if (operation == "") {
+            display.textContent = `${display.textContent}${number.textContent}`;
+        } else { 
+            display.textContent = ""; // reset display for next number
+            display.textContent = `${display.textContent}${number.textContent}`;
+        }
+
+    });
+});
+
+operators.forEach(operator => {
+    operator.addEventListener('click', () => {
+        
+        
+        if (display.textContent == "") { // nothing happens if no content
+            return;
+        }
+
+        if (operation == "") {
+            a = Number(display.textContent);
+            operation = operator.textContent;
+        } else { // update "a" and "b" if its consecutive calculation
+            b = Number(display.textContent);
+            let output = operate(a, operation, b);
+            a = output; // replace "a" with new output
+            operation = operator.textContent;
+            display.textContent = output;
+        }
+
+    });
+});
+
+equals.addEventListener('click', () => {
+    
+    if (display.textContent == "") { // nothing happens if no content
+        return;
+    }
+
+    b = Number(display.textContent);
+    let output = operate(a, operation, b);
+    display.textContent = output;
+    
+    reset();
+
+});
+
+clear.addEventListener('click', () => {
+
+    reset();
+    display.textContent = "";
+
+});
+
+
+
+
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
+function operate(a, operation, b) { // Calls one of function above based on operation
 
     switch (operation) {
         case "+": return add(a, b);
@@ -41,43 +96,8 @@ function operate(a, operation, b) {
 
 }
 
-// 4. Create functions that populate the display when you click on the buttons
-const display = document.querySelector('#calc');
-const numbers = document.querySelectorAll('.number');
-const operators = document.querySelectorAll('.operator');
-const equals = document.querySelector('#equal');
-const clear = document.querySelector('#clear');
-
-numbers.forEach(number => {
-    number.addEventListener('click', () => {
-        display.textContent = `${display.textContent}${number.textContent}`;
-    });
-});
-
-operators.forEach(operator => {
-    operator.addEventListener('click', () => {
-        if (display.textContent == "") {
-            return;
-        }
-        a = Number(display.textContent);
-        operation = operator.textContent;
-        display.textContent = `${display.textContent} ${operation} `;
-    });
-});
-
-equals.addEventListener('click', () => {
-    let cropAt = display.textContent.indexOf(operation);
-    b = Number(display.textContent.substring(cropAt + 1));
-    console.log(a);
-    console.log(operation);
-    console.log(b);
-    let result = operate(a, operation, b);
-    display.textContent = `${display.textContent} = ${result}`;
-});
-
-clear.addEventListener('click', () => {
+function reset() {
     a = "";
     b = "";
     operation = "";
-    display.textContent ="";
-});
+}
