@@ -82,17 +82,17 @@ button {
     width: 100px;
 }
 
-#operators button {
+.operator {
     background-color: rgb(53, 64, 74);
     color: white;
-}
-
-#zero {
-    height: 90px;
-    width: 190px;
 }
 
 #clear {
     background-color: rgb(255, 83, 104);
     font-size: 1.2em;
+}
+
+#equal {
+    background-color: rgb(53, 64, 74);
+    color: white;
 }
